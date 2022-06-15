@@ -1,0 +1,20 @@
+{
+  "name": "product-service",
+  "version": "1.0.0",
+  "description": "Product Service",
+  "main": "handler.js",
+  "scripts": {
+    "deploy": "serverless deploy --aws-profile epam-admin2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/AliaksandrVarachai/shop-be.git"
+  },
+  "keywords": ["aws", "nodejs"],
+  "author": "Aliaksandr Varachai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AliaksandrVarachai/shop-be/issues"
+  },
+  "homepage": "https://github.com/AliaksandrVarachai/shop-be#readme"
+}
