@@ -65,13 +65,6 @@ plugins:
 #    - include-me-dir/**
 
 functions:
-  hello:
-    # TODO: remove this handler
-    handler: handlers/handler.hello
-    events:
-      - http:
-          path: products
-          method: get
   getProductsList:
     handler: handlers/getProductsList.default
     events:

@@ -5,6 +5,7 @@ module.exports = {
   context: __dirname,
   entry: slsw.lib.entries,
   target: 'node',
+  mode: process.env.NODE_ENV,
   module: {
     rules: [
       // {
