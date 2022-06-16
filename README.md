@@ -1,11 +1,23 @@
-The task 3 is going to be deployed in the near time.
+# Shop Backend
 
-**Sorry for the delay.**
+## Task 3
 
-Get a list of products: https://rf0c5q2bb7.execute-api.eu-west-1.amazonaws.com/dev/products/list
+### Task 3.1
+Lambda `getProductList` is implemented and integrated with frontend. 
+Direct link: https://rf0c5q2bb7.execute-api.eu-west-1.amazonaws.com/dev/products/list
 
-Get a product by ID: https://rf0c5q2bb7.execute-api.eu-west-1.amazonaws.com/dev/products/7567ec4b-b10c-48c5-9345-fc73c48a80aa
+### Task 3.2
+Lambda `getProductsById` is implemented and integrated with frontend.
+Direct link: https://rf0c5q2bb7.execute-api.eu-west-1.amazonaws.com/dev/products/7567ec4b-b10c-48c5-9345-fc73c48a80aa
 
+### Task 3.3
+PR is created
 
-Swagger file is created. 
-Link on SwaggerHub: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-service/1.0.0
+### Additional tasks
+1. Async/await is used
+2. ES6 modules are used
+3. Webpack is configured
+4. SWAGGER documentation is created: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-service/1.0.0
+5. Lambda handlers are covered by basic Unit tests
+6. Lambda handlers `getProductsList`, `getProductsById` code are separated in codebase
+7. Error scenarious are handled (404 error if a product is not found by ID)
