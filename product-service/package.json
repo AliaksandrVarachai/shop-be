@@ -2,7 +2,6 @@
   "name": "product-service",
   "version": "1.0.0",
   "description": "Product Service",
-  "main": "handler.js",
   "scripts": {
     "deploy:dev": "cross-env NODE_ENV=development serverless deploy --aws-profile epam-admin2",
     "deploy": "cross-env NODE_ENV=production serverless deploy --aws-profile epam-admin2"
