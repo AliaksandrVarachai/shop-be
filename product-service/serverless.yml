@@ -26,6 +26,14 @@ provider:
   stage: dev
   region: eu-west-1
 
+custom:
+  webpack:
+    webpackConfig: webpack.config.js
+    includeModules: true
+
+plugins:
+  - serverless-webpack
+
 # you can add statements to the Lambda function's IAM Role here
 #  iam:
 #    role:
@@ -58,11 +66,27 @@ provider:
 
 functions:
   hello:
-    handler: handler.hello
+    # TODO: remove this handler
+    handler: handlers/handler.hello
     events:
       - http:
           path: products
           method: get
+  getProductsList:
+    handler: handlers/getProductsList.default
+    events:
+      - http:
+          path: /products/list
+          method: get
+          cors: true
+  getProductsById:
+    handler: handlers/getProductsById.default
+    events:
+      - http:
+          path: /products/{productId}
+          method: get
+          cors: true
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

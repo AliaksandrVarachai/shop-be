@@ -10,11 +10,18 @@
     "type": "git",
     "url": "git+ssh://git@github.com/AliaksandrVarachai/shop-be.git"
   },
-  "keywords": ["aws", "nodejs"],
+  "keywords": [
+    "aws",
+    "nodejs"
+  ],
   "author": "Aliaksandr Varachai",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AliaksandrVarachai/shop-be/issues"
   },
-  "homepage": "https://github.com/AliaksandrVarachai/shop-be#readme"
+  "homepage": "https://github.com/AliaksandrVarachai/shop-be#readme",
+  "devDependencies": {
+    "serverless-webpack": "^5.7.1",
+    "webpack": "^5.73.0"
+  }
 }
