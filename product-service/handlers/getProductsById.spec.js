@@ -4,6 +4,7 @@ jest.mock('./productsList.json', () => [
   { id: 'id-1' },
   { id: 'id-2' },
 ]);
+jest.mock('./commonHeaders.js', () => ({}));
 
 describe('getProductsById', () => {
   it('should return body with status code 200', async () => {

@@ -1,5 +1,9 @@
 # Shop Backend
 
+## Prerequisites
+- Link to a frontend repository: https://github.com/AliaksandrVarachai/shop-react-redux-cloudfront
+- Link to a hosted web-site: https://d1fxaqepkkpfnn.cloudfront.net
+
 ## Task 3
 
 ### Task 3.1
