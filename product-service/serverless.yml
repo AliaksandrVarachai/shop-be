@@ -69,7 +69,7 @@ functions:
     handler: handlers/getProductsList.default
     events:
       - http:
-          path: /products/list
+          path: /products
           method: get
           cors: true
   getProductsById:

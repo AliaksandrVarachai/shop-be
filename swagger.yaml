@@ -9,7 +9,7 @@ info:
     name: ISC
 
 paths:
-  /getProductsList:
+  /products:
     get:
       summary: Gets products list
       operationId: getProductsList

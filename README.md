@@ -8,7 +8,7 @@
 
 ### Task 3.1
 Lambda `getProductList` is implemented and integrated with frontend. 
-Direct link: https://rf0c5q2bb7.execute-api.eu-west-1.amazonaws.com/dev/products/list
+Direct link: https://rf0c5q2bb7.execute-api.eu-west-1.amazonaws.com/dev/products
 
 ### Task 3.2
 Lambda `getProductsById` is implemented and integrated with frontend.
