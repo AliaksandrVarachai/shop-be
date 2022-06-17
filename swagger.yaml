@@ -1,0 +1,94 @@
+swagger: '2.0'
+info:
+  description: Product service API
+  version: 1.0.0
+  title: Product Service API
+  contact:
+    email: aliaksandr_varachai@epam.com
+  license:
+    name: ISC
+
+paths:
+  /products:
+    get:
+      summary: Gets products list
+      operationId: getProductsList
+      description: Provides products list
+      produces:
+        - application/json
+      responses:
+        200:
+          description: products list
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductItem'
+
+  /products/{productId}:
+    get:
+      summary: Gets a product by ID
+      operationId: getProductsById
+      description: Provides a product by ID
+      parameters:
+        - in: path
+          name: productId
+          description: ID of a product
+          required: true
+          type: string
+          format: uuid
+      produces:
+        - application/json
+      responses:
+        200:
+          description: product is found
+          schema:
+            $ref: '#/definitions/ProductItem'
+        404:
+          description: product is not found
+          schema:
+            $ref: '#/definitions/ErrorItem'
+definitions:
+  ProductItem:
+    type: object
+    required:
+      - id
+      - description
+      - count
+      - price
+      - title
+    properties:
+      id:
+        type: string
+        format: uuid
+        example: d290f1ee-6c54-4b01-90e6-d701748f0851
+      description:
+        type: string
+        example: Widget Adapter
+      count:
+        type: integer
+        minimum: 0
+        maximum: 1000
+        example: 42
+      price:
+        type: number
+        minimum: 0
+        example: 5.99
+      title:
+        type: string
+        example: Some text description
+
+  ErrorItem:
+    type: object
+    required:
+      - error
+    properties:
+      error:
+        type: object
+        properties:
+          message:
+            type: string
+            example: Product not found
+
+
+host: virtserver.swaggerhub.com
+basePath: /AliaksandrVarachai/product-service/1.0.0
