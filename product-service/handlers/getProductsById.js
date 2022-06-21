@@ -1,6 +1,5 @@
-// import productsList from '../mocks/productsList.json';
-import commonHeaders from './commonHeaders.js';
 import { getProductsById } from '../services/index.js';
+import commonHeaders from './helpers/commonHeaders.js';
 
 export default async (event) => {
   const { productId } = event.pathParameters;

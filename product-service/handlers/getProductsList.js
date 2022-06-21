@@ -1,5 +1,5 @@
 import { getProductsList } from '../services/index.js';
-import commonHeaders from './commonHeaders.js';
+import commonHeaders from './helpers/commonHeaders.js';
 
 export default async () => {
   try {
