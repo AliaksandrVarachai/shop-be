@@ -1,9 +1,9 @@
--- DROP DATABASE hobby-shop;
-CREATE DATABASE hobby-shop;
+-- DROP DATABASE hobby_shop;
+CREATE DATABASE hobby_shop;
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- DROP TABLE porducts;
+-- DROP TABLE products;
 CREATE TABLE products (
     product_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     title text NOT NULL unique,
