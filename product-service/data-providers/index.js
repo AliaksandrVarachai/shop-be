@@ -63,5 +63,44 @@ export const getProductsById = async (productId) => {
   } finally {
     client.end();
   }
+};
 
+export const createProducts = async ({ title, description, price, count }) => {
+  const client = new Client(dbOptions);
+  await client.connect();
+  try {
+    await client.query('BEGIN');
+    const { rows: [{ product_id }] } = await client.query(
+      `
+        INSERT INTO products (title, description, price)
+        VALUES ($1, $2, $3)
+        RETURNING product_id;
+      `,
+      [title, description, price]
+    );
+
+    const { rows: [{ stock_id }] } = await client.query(
+      `
+        INSERT INTO stocks (product_id, count)
+        VALUES ($1, $2)
+        RETURNING stock_id; 
+      `,
+      [product_id, count]
+    );
+    await client.query('COMMIT');
+
+    return {
+      product_id,
+      title,
+      description,
+      price,
+      stock_id,
+      count,
+    };
+  } catch (error) {
+    await client.query('ROLLBACK');
+    throw(error);
+  } finally {
+    client.end();
+  }
 };
