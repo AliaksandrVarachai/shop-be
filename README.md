@@ -25,3 +25,30 @@ PR is created
 5. Lambda handlers are covered by basic Unit tests
 6. Lambda handlers `getProductsList`, `getProductsById` code are separated in codebase
 7. Error scenarious are handled (404 error if a product is not found by ID)
+
+## Task 4
+
+- Link to a frontend repository: https://github.com/AliaksandrVarachai/shop-react-redux-cloudfront
+- Link to a hosted web-site: https://d1fxaqepkkpfnn.cloudfront.net
+
+### Task 4.1
+Created AWS RDS instance (PostgreSQL), initialized, and seeded with SQL scripts:
+- `db-init.sql`
+- `seeds.sql`
+
+### Task 4.2
+Lambdas are integrated with the created database:
+  - `GET /products` https://rf0c5q2bb7.execute-api.eu-west-1.amazonaws.com/dev/products
+  - `GET /products/{id}` https://rf0c5q2bb7.execute-api.eu-west-1.amazonaws.com/dev/products/c10944ac-acba-4db4-af4a-5c7240a94518
+
+Environmental variables are stored locally in `.env` file.
+
+### Task 4.3
+Lambda `POST /products` is implemented and deployed.
+See Swagger docs: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-service/1.0.0
+
+### Additional tasks
+1. `POST /products` returns `400` error if product data is invalid
+2. All lambdas return `500` error for unhandled errors in code
+3. // TODO
+4. Creation of a product is transaction based
