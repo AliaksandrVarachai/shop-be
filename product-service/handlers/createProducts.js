@@ -4,7 +4,7 @@ import commonHeaders from './helpers/commonHeaders.js';
 export default async (event) => {
   const { title, description, price, count } = JSON.parse(event.body);
   if (!title || typeof title !== 'string' || typeof description !== 'string'
-    || typeof price !== 'number' || typeof count !== 'number') {
+    || typeof price !== 'number' || price < 0 || typeof count !== 'number' || count < 0) {
     const payloadErrorMessage = `Wrong data. Requirements: 
 title is not empty string,
 description is string,
