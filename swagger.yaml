@@ -175,5 +175,5 @@ definitions:
             example: Product not found
 
 
-host: virtserver.swaggerhub.com
-basePath: /AliaksandrVarachai/product-service/1.0.0
+host: rf0c5q2bb7.execute-api.eu-west-1.amazonaws.com
+basePath: /dev
