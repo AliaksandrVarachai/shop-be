@@ -7,6 +7,11 @@ jest.mock('../services/index.js', () => ({
   createProducts: jest.fn(),
 }));
 
+jest.mock('../loggers/index.js', () => ({
+  logSuccess: jest.fn(),
+  logError: jest.fn(),
+}));
+
 const creatingProduct = {
   title: 'title-1',
   description: 'description-1',

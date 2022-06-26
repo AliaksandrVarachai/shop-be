@@ -7,6 +7,11 @@ jest.mock('../services/index.js', () => ({
   getProductsById: jest.fn(),
 }));
 
+jest.mock('../loggers/index.js', () => ({
+  logSuccess: jest.fn(),
+  logError: jest.fn(),
+}));
+
 describe('getProductsById', () => {
   it('should return 200 status code if a product is found', async () => {
     const event = {

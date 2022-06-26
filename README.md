@@ -50,5 +50,5 @@ See Swagger docs: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-ser
 ### Additional tasks
 1. `POST /products` returns `400` error if product data is invalid
 2. All lambdas return `500` error for unhandled errors in code
-3. // TODO
+3. All calls of lambdas do console.log for all incoming request with their arugments
 4. Creation of a product is transaction based

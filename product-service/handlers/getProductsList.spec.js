@@ -7,6 +7,10 @@ jest.mock('../services/index.js', () => ({
   getProductsList: jest.fn(),
 }));
 
+jest.mock('../loggers/index.js', () => ({
+  logSuccess: jest.fn(),
+  logError: jest.fn(),
+}));
 
 jest.mock('./helpers/commonHeaders.js', () => ({}));
 
