@@ -1,4 +1,4 @@
-import getProductsList from './getProductsList';
+import getProductsList from './getProductsList.js';
 import * as services from '../services/index.js';
 
 jest.mock('./helpers/commonHeaders.js', () => ({}));
