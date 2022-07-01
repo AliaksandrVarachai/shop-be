@@ -18,11 +18,58 @@ paths:
         - application/json
       responses:
         200:
-          description: products list
+          description: Products list
           schema:
             type: array
             items:
               $ref: '#/definitions/ProductItem'
+        500:
+          description: Server error
+          schema:
+            $ref: '#/definitions/ErrorItem'
+
+    post:
+      tags:
+        - developers
+      summary: Creates a new product and adds it to a stock
+      operationId: createProducts
+      description: Creates a new product and adds it to a stock
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: createProductId
+          schema:
+            type: object
+            required:
+              - title
+              - price
+              - count
+            properties:
+              title:
+                type: string
+              price:
+                type: integer
+              count:
+                type: integer
+              description:
+                type: string
+
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Product is created
+          schema:
+            $ref: '#/definitions/CreatedProductItem'
+        400:
+          description: Bad payload parameters
+          schema:
+            $ref: '#/definitions/ErrorItem'
+        500:
+          description: Server error
+          schema:
+            $ref: '#/definitions/ErrorItem'
 
   /products/{productId}:
     get:
@@ -40,11 +87,15 @@ paths:
         - application/json
       responses:
         200:
-          description: product is found
+          description: Product is found
           schema:
             $ref: '#/definitions/ProductItem'
         404:
-          description: product is not found
+          description: Product not found
+          schema:
+            $ref: '#/definitions/ErrorItem'
+        500:
+          description: Server error
           schema:
             $ref: '#/definitions/ErrorItem'
 definitions:
@@ -77,6 +128,40 @@ definitions:
         type: string
         example: Some text description
 
+  CreatedProductItem:
+    type: object
+    required:
+      - productId
+      - description
+      - count
+      - price
+      - title
+      - stockId
+    properties:
+      productId:
+        type: string
+        format: uuid
+        example: d290f1ee-6c54-4b01-90e6-d701748f0851
+      description:
+        type: string
+        example: Widget Adapter
+      count:
+        type: integer
+        minimum: 0
+        maximum: 1000
+        example: 42
+      price:
+        type: number
+        minimum: 0
+        example: 5.99
+      title:
+        type: string
+        example: Some text description
+      stockId:
+        type: string
+        format: uuid
+        example: 29656a66-9d37-4238-a190-be1d84672697
+
   ErrorItem:
     type: object
     required:
@@ -90,5 +175,5 @@ definitions:
             example: Product not found
 
 
-host: virtserver.swaggerhub.com
-basePath: /AliaksandrVarachai/product-service/1.0.0
+host: rf0c5q2bb7.execute-api.eu-west-1.amazonaws.com
+basePath: /dev

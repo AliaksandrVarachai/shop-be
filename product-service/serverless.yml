@@ -20,6 +20,8 @@ service: product-service
 # Check out our docs for more details
 frameworkVersion: '3'
 
+useDotenv: true
+
 provider:
   name: aws
   runtime: nodejs14.x
@@ -33,6 +35,7 @@ custom:
 
 plugins:
   - serverless-webpack
+  - serverless-dotenv-plugin
 
 # you can add statements to the Lambda function's IAM Role here
 #  iam:
@@ -78,6 +81,13 @@ functions:
       - http:
           path: /products/{productId}
           method: get
+          cors: true
+  createProducts:
+    handler: handlers/createProducts.default
+    events:
+      - http:
+          path: /products
+          method: post
           cors: true
 
 #    The following are a few example events you can configure

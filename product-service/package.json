@@ -9,7 +9,7 @@
   "scripts": {
     "deploy:dev": "cross-env NODE_ENV=development serverless deploy --aws-profile epam-admin2",
     "deploy": "cross-env NODE_ENV=production serverless deploy --aws-profile epam-admin2",
-    "test": "jest --config ./jest.config.js"
+    "test": "jest --config jest.config.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,8 @@
     "@babel/preset-env": "^7.18.2",
     "cross-env": "^7.0.3",
     "jest": "^28.1.1",
+    "pg": "^8.7.3",
+    "serverless-dotenv-plugin": "^4.0.1",
     "serverless-webpack": "^5.7.1"
   }
 }

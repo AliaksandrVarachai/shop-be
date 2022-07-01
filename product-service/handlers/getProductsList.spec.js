@@ -1,16 +1,39 @@
-import getProductsList from './getProductsList';
+import getProductsList from './getProductsList.js';
+import * as services from '../services/index.js';
 
-jest.mock('./productsList.json', () => [
-  { id: 'id-1' },
-  { id: 'id-2' },
-]);
-jest.mock('./commonHeaders.js', () => ({}));
+jest.mock('./helpers/commonHeaders.js', () => ({}));
+
+jest.mock('../services/index.js', () => ({
+  getProductsList: jest.fn(),
+}));
+
+jest.mock('../loggers/index.js', () => ({
+  logSuccess: jest.fn(),
+  logError: jest.fn(),
+}));
+
+jest.mock('./helpers/commonHeaders.js', () => ({}));
 
 describe('getProductsList', () => {
-  it ('should return a body with status code 200', async () => {
+  it ('should return 200 status code if list is available', async () => {
+    services.getProductsList.mockImplementation(async () => [
+      { id: 'id-1' },
+      { id: 'id-2' },
+    ]);
     const response = await getProductsList();
     expect(response).toMatchObject({
       statusCode: 200,
+      body: expect.any(String),
+    });
+  });
+
+  it ('should return 500 status code if an unhandled error happens', async () => {
+    services.getProductsList.mockImplementation(async () => {
+      throw Error('Error message');
+    });
+    const response = await getProductsList();
+    expect(response).toMatchObject({
+      statusCode: 500,
       body: expect.any(String),
     });
   });

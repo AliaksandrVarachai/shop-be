@@ -1,9 +1,16 @@
+# experiments directory
+experiments
+
 # package directories
 node_modules
 jspm_packages
 
 # Serverless directories
 .serverless
+.webpack
 
 # Reports
 coverage
+
+# Configs
+.env
