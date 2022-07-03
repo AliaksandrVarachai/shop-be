@@ -2,16 +2,16 @@ import aws from 'aws-sdk';
 import path from 'path';
 import commonHeaders from './helpers/commonHeaders.js';
 
-const { BUCKET, S3_REGION, S3_UPLOADED_PATH } = process.env;
+const { S3_NAME, S3_REGION, S3_UPLOADED_PATH } = process.env;
 const s3 = new aws.S3({ region: S3_REGION });
 
 export default async (event) => {
   console.log('importProductsFile event=', event)
   const { name: filename } = event.queryStringParameters;
   const params = {
-    Bucket: BUCKET,
+    Bucket: S3_NAME,
     Key: path.join(S3_UPLOADED_PATH, filename),
-    Expires: 60,
+    Expires: 900,
     ContentType: 'text/csv',
   };
   console.log('importProductsFile params=', params)
