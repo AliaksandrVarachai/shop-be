@@ -20,6 +20,8 @@ service: import-service
 # Check out our docs for more details
 frameworkVersion: '3'
 
+useDotenv: true
+
 provider:
   name: aws
   runtime: nodejs14.x
@@ -37,13 +39,14 @@ provider:
         - 'arn:aws:s3:::${self:custom.bucketName}/*'
 
 custom:
-  bucketName: 'varachai-shop-images'
+  bucketName: env:BUCKET_NAME
   webpack:
     webpackConfig: webpack.config.cjs
     includeModules: true
 
 plugins:
   - serverless-webpack
+  - serverless-dotenv-plugin
 
 # you can overwrite defaults here
 #  stage: dev
@@ -91,6 +94,15 @@ functions:
             parameters:
               querystrings:
                 name: true
+  importFileParser:
+    handler: handlers/importFileParser.default
+    events:
+      - s3:
+          bucket: ${env:S3_NAME}
+          event: 's3:ObjectCreated:*'
+          rules:
+            - prefix: uploaded/
+          existing: true
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

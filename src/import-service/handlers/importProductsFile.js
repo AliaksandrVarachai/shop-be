@@ -2,9 +2,8 @@ import aws from 'aws-sdk';
 import path from 'path';
 import commonHeaders from './helpers/commonHeaders.js';
 
-const s3 = new aws.S3({ region: 'eu-west-1' });
-const BUCKET = 'varachai-shop-images';
-const S3_UPLOADED_PATH = 'uploaded'
+const { BUCKET, S3_REGION, S3_UPLOADED_PATH } = process.env;
+const s3 = new aws.S3({ region: S3_REGION });
 
 export default async (event) => {
   console.log('importProductsFile event=', event)
