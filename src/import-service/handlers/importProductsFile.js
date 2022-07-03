@@ -1,18 +1,40 @@
-'use strict';
+import aws from 'aws-sdk';
+import path from 'path';
+import commonHeaders from './helpers/commonHeaders.js';
+
+const s3 = new aws.S3({ region: 'eu-west-1' });
+const BUCKET = 'varachai-shop-images';
+const S3_UPLOADED_PATH = 'uploaded'
 
 export default async (event) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
+  console.log('importProductsFile event=', event)
+  const { name: filename } = event.queryStringParameters;
+  const params = {
+    Bucket: BUCKET,
+    Key: path.join(S3_UPLOADED_PATH, filename),
+    Expires: 60,
+    ContentType: 'text/csv',
   };
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
+  console.log('importProductsFile params=', params)
+  try {
+    const signedUrl = await s3.getSignedUrlPromise('putObject', params);
+    console.log('importProductsFile signedUrl=', signedUrl)
+    const response = {
+      headers: {
+        ...commonHeaders,
+        'Content-Type': 'text/plain',
+      },
+      statusCode: 200,
+      body: signedUrl,
+    }
+    return response;
+  } catch(error) {
+    return {
+      headers: commonHeaders,
+      statusCode: 500,
+      body: JSON.stringify({
+        error: { message: 'Server error' }
+      }),
+    };
+  }
 };
