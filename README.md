@@ -52,3 +52,24 @@ See Swagger docs: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-ser
 2. All lambdas return `500` error for unhandled errors in code
 3. All calls of lambdas do `console.log` for all incoming request with their arugments
 4. Creation of a product is transaction based
+
+## Task 5
+
+- Link to the integrated frontend repository: https://github.com/AliaksandrVarachai/shop-react-redux-cloudfront/pull/3/files
+- Link to a hosted web-site: https://d1fxaqepkkpfnn.cloudfront.net
+
+### Task 5.1
+- `import-service` with `importProductsFile` lambda is implemented. Example of getting a signed URL for an uploaded file:
+  https://6t8amjybxg.execute-api.eu-west-1.amazonaws.com/dev/import?name=file.csv
+
+### Task 5.2
+- `importFileParser` lambda triggered by `s3:ObjectCreated` event is implemented. It parses data in a stream via `csv-parser`
+  and logs each record in `CloudWatch`
+
+### Task 5.3
+- Created PRs both for backend implementation and FE integration.
+
+### Additional tasks
+1. `async/await` is used in lambda functions
+2. // TODO
+3. At the end of the parsing stream the lambda function moves loaded CSV file to '/parsed' folder
