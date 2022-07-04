@@ -61,6 +61,7 @@ See Swagger docs: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-ser
 ### Task 5.1
 - `import-service` with `importProductsFile` lambda is implemented. Example of getting a signed URL for an uploaded file:
   https://6t8amjybxg.execute-api.eu-west-1.amazonaws.com/dev/import?name=file.csv
+- Link to Swagger docs: https://app.swaggerhub.com/apis/AliaksandrVarachai/import-service/1.0.0L
 
 ### Task 5.2
 - `importFileParser` lambda triggered by `s3:ObjectCreated` event is implemented. It parses data in a stream via `csv-parser`
