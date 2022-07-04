@@ -6,7 +6,6 @@ const { S3_NAME, S3_REGION, S3_UPLOADED_PATH } = process.env;
 const s3 = new aws.S3({ region: S3_REGION });
 
 export default async (event) => {
-  console.log('importProductsFile event=', event)
   const { name: filename } = event.queryStringParameters;
   const params = {
     Bucket: S3_NAME,
@@ -14,7 +13,6 @@ export default async (event) => {
     Expires: 900,
     ContentType: 'text/csv',
   };
-  console.log('importProductsFile params=', params)
   try {
     const signedUrl = await s3.getSignedUrlPromise('putObject', params);
     console.log('importProductsFile signedUrl=', signedUrl)
