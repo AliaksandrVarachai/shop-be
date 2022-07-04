@@ -71,5 +71,5 @@ See Swagger docs: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-ser
 
 ### Additional tasks
 1. `async/await` is used in lambda functions
-2. // TODO
+2. `importProductsFile` lambda is covered by unit tests
 3. At the end of the parsing stream the lambda function moves loaded CSV file to '/parsed' folder

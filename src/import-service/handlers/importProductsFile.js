@@ -1,21 +1,34 @@
 import aws from 'aws-sdk';
 import path from 'path';
 import commonHeaders from './helpers/commonHeaders.js';
+import { logError, logSuccess } from '../loggers/index.js';
 
 const { S3_NAME, S3_REGION, S3_UPLOADED_PATH } = process.env;
-const s3 = new aws.S3({ region: S3_REGION });
 
-export default async (event) => {
-  const { name: filename } = event.queryStringParameters;
-  const params = {
-    Bucket: S3_NAME,
-    Key: path.join(S3_UPLOADED_PATH, filename),
-    Expires: 900,
-    ContentType: 'text/csv',
-  };
+export default async (event, context) => {
+  const s3 = new aws.S3({ region: S3_REGION }); // inside the handler to mock in tests
+
+  if (!event.queryStringParameters?.name) {
+    const response = {
+      headers: commonHeaders,
+      statusCode: 400,
+      body: JSON.stringify({
+        error: { message: 'No required query parameters' }
+      }),
+    };
+    logError(event, context);
+    return response;
+  }
+
   try {
+    const { name: filename } = event.queryStringParameters;
+    const params = {
+      Bucket: S3_NAME,
+      Key: path.join(S3_UPLOADED_PATH, filename),
+      Expires: 900,
+      ContentType: 'text/csv',
+    };
     const signedUrl = await s3.getSignedUrlPromise('putObject', params);
-    console.log('importProductsFile signedUrl=', signedUrl)
     const response = {
       headers: {
         ...commonHeaders,
@@ -24,14 +37,17 @@ export default async (event) => {
       statusCode: 200,
       body: signedUrl,
     }
+    logSuccess(event, context);
     return response;
   } catch(error) {
-    return {
+    const response = {
       headers: commonHeaders,
       statusCode: 500,
       body: JSON.stringify({
         error: { message: 'Server error' }
       }),
     };
+    logError(event, context);
+    return response;
   }
 };

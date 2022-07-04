@@ -1,4 +1,4 @@
-title;description;price
-t1;d1;10
-t2;d2;20
-t3;d3;30
+title,description,price
+t1,d1,10
+t2,d2,20
+t3,d3,30

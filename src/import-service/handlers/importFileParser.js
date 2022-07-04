@@ -1,6 +1,6 @@
 import aws from 'aws-sdk';
 import csvParser from 'csv-parser';
-import commonHeaders from './helpers/commonHeaders';
+import commonHeaders from './helpers/commonHeaders.js';
 
 const { S3_NAME, S3_REGION, S3_UPLOADED_PATH, S3_PARSED_PATH } = process.env;
 
