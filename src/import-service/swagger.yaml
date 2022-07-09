@@ -1,0 +1,54 @@
+swagger: '2.0'
+info:
+  description: Import service API
+  version: 1.0.0
+  title: Import Service API
+  contact:
+    email: aliaksandr_varachai@epam.com
+  license:
+    name: ISC
+
+paths:
+  /import:
+    get:
+      summary: Gets a signed URL
+      operationId: getSignedURL
+      description: Gets a signed URL from AWS S3
+      parameters:
+        - in: query
+          name: name
+          type: string
+          description: File name to be uploaded
+      produces:
+        - plain/text
+      responses:
+        200:
+          description: Signed URL
+          schema:
+            type: string
+            example: 'https://some-signed-url.com'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorItem'
+        500:
+          description: Server error
+          schema:
+            $ref: '#/definitions/ErrorItem'
+
+definitions:
+  ErrorItem:
+    type: object
+    required:
+      - error
+    properties:
+      error:
+        type: object
+        properties:
+          message:
+            type: string
+            example: Server error
+
+
+host: 6t8amjybxg.execute-api.eu-west-1.amazonaws.com
+basePath: /dev
