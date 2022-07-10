@@ -1,5 +1,6 @@
 import aws from 'aws-sdk';
 import { createProducts } from '../services/index.js';
+import { logError, logSuccess } from '../loggers/index.js';
 
 const { REGION, SNS_ARN } = process.env;
 
@@ -10,7 +11,6 @@ export default async (event, context) => {
   try {
     // TODO: replace with batch of products creation
     await Promise.all(products.map(product => createProducts(product)));
-    console.log('Products are created in DB:', products.map(({ title }) => title));
     const PublishBatchRequestEntries = products.map(({ title }) => ({
       Id: title,
       Subject: 'Product is created',
@@ -20,11 +20,12 @@ export default async (event, context) => {
       PublishBatchRequestEntries,
       TopicArn: SNS_ARN
     });
+    logSuccess(event, context);
     return {
       statusCode: 200
     }
   } catch (error) {
-    console.log(error.message);
+    logError(event, context, error.message);
     return {
       statusCode: 500
     }
