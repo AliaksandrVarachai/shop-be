@@ -10,6 +10,9 @@ provider:
   stage: dev
   region: eu-west-1
 
+  environment:
+    SQS_URL: !Ref SQSQueue
+
   iamRoleStatements:
     - Effect: 'Allow'
       Action: 's3:ListBucket'
@@ -19,6 +22,10 @@ provider:
       Action: "s3:*"
       Resource:
         - 'arn:aws:s3:::${self:custom.bucketName}/*'
+    - Effect: 'Allow'
+      Action: 'sqs:*'
+      Resource:
+        - Fn::GetAtt: [SQSQueue, Arn]
 
 custom:
   bucketName: env:BUCKET_NAME
@@ -51,3 +58,10 @@ functions:
           rules:
             - prefix: uploaded/
           existing: true
+
+resources:
+  Resources:
+    SQSQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: catalogItemsQueue

@@ -15,14 +15,15 @@ export default async (event, context) => {
       logSuccess(event, context);
       return response;
     }
+    const message = 'Product not found';
     const response = {
       headers: commonHeaders,
       statusCode: 404,
       body: JSON.stringify({
-        error: { message: 'Product not found' }
+        error: { message }
       }),
     };
-    logError(event, context);
+    logError(event, context, message);
     return response;
   } catch (error) {
     const response = {
@@ -32,7 +33,7 @@ export default async (event, context) => {
         error: { message: error.message }
       }),
     };
-    logError(event, context);
+    logError(event, context, error.message);
     return response;
   }
 };
