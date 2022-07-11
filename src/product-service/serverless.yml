@@ -70,10 +70,19 @@ resources:
       Type: AWS::SNS::Topic
       Properties:
         TopicName: createProductTopic
-    SNSSubscription:
+    SNSSubscriptionInfo:
       Type: AWS::SNS::Subscription
       Properties:
         Endpoint: vorochai@list.ru
         Protocol: email
         TopicArn:
           Ref: SNSTopic
+    SNSSubscriptionError:
+      Type: AWS::SNS::Subscription
+      Properties:
+        Endpoint: aliaksandr_varachai@epam.com
+        Protocol: email
+        TopicArn:
+          Ref: SNSTopic
+        FilterPolicy:
+          category: [error, warn, alert]

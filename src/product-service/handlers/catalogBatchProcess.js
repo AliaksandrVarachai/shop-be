@@ -15,16 +15,33 @@ export default async (event, context) => {
       Id: title,
       Subject: 'Product is created',
       Message: `Product "${title}" is added to DB successfully`,
+      MessageAttributes: {
+        category: {
+          DataType: 'String',
+          StringValue: 'info',
+        },
+      }
     }));
     await sns.publishBatch({
       PublishBatchRequestEntries,
       TopicArn: SNS_ARN
-    });
+    }).promise();
     logSuccess(event, context);
     return {
       statusCode: 200
     }
   } catch (error) {
+    await sns.publish({
+      Subject: 'Product creation failed',
+      Message: `Products failed to be added to DB:\n${JSON.stringify(products, null, 4)}\n${error.message}`,
+      TopicArn: SNS_ARN,
+      MessageAttributes: {
+        category: {
+          DataType: 'String',
+          StringValue: 'error',
+        }
+      }
+    }).promise();
     logError(event, context, error.message);
     return {
       statusCode: 500
