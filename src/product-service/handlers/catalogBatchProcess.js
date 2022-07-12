@@ -1,5 +1,5 @@
 import aws from 'aws-sdk';
-import { createMultipleProducts, createProducts } from '../services/index.js';
+import { createProducts } from '../services/index.js';
 import { logError, logSuccess } from '../loggers/index.js';
 
 const { REGION, SNS_ARN } = process.env;
@@ -39,6 +39,7 @@ export default async (event, context) => {
         }).promise();
       }
     }
+    logSuccess(event, context);
     return {
       statusCode: 200
     }
