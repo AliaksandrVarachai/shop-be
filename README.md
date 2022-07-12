@@ -74,3 +74,28 @@ See Swagger docs: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-ser
 1. `async/await` is used in lambda functions
 2. `importProductsFile` lambda is covered by unit tests
 3. At the end of the parsing stream the lambda function moves loaded CSV file to '/parsed' folder
+
+## Task 6
+
+- Link to the integrated frontend repository: https://github.com/AliaksandrVarachai/shop-react-redux-cloudfront/pull/3/files
+- Link to a hosted web-site: https://d1fxaqepkkpfnn.cloudfront.net
+
+### Task 6.1
+- Created `catalogBatchProcess` lambda function
+- Configured `serverless.yml`
+
+### Task 6.2
+- Configured an SQS queue `catalogItemsQueue`
+- SQS is configured to trigger lambda `catalogBatchProcess` with `batchSize: 5`
+- `catalogBatchProcess` creates all imported products in a DB
+
+### Task 6.3
+- Configured an SNS topic `createProductTopic`
+- `catalogBatchProcess` sends emails via `createProductTopic` when a product created or the creation is failed
+
+### Task 6.4
+- Created a PR with made changes.
+
+### Additional tasks
+1. `catalogBatchProcess` lambda is covered by unit tests
+2. SNS Filter Policy for `createProductTopic` is configured
