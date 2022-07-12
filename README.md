@@ -77,7 +77,7 @@ See Swagger docs: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-ser
 
 ## Task 6
 
-- Link to the integrated frontend repository: https://github.com/AliaksandrVarachai/shop-react-redux-cloudfront/pull/3/files
+- Link to the integrated frontend repository: https://github.com/AliaksandrVarachai/shop-react-redux-cloudfront
 - Link to a hosted web-site: https://d1fxaqepkkpfnn.cloudfront.net
 
 ### Task 6.1
