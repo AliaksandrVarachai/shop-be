@@ -4,8 +4,9 @@ export const logSuccess = (event, context) => {
 EVENT: ${JSON.stringify(event, null, 4)}`);
 };
 
-export const logError = (event, context) => {
+export const logError = (event, context, errorMessage) => {
   const { functionName, functionVersion } = context;
   console.log(`${functionName}@${functionVersion} ERROR
-EVENT: ${JSON.stringify(event, null, 4)}`);
+EVENT: ${JSON.stringify(event, null, 4)}
+ERROR MESSAGE: ${errorMessage}`);
 };

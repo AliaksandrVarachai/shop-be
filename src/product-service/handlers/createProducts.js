@@ -37,7 +37,7 @@ count is number.`
         error: { message: error.message }
       }),
     };
-    logError(event, context);
+    logError(event, context, error.message);
     return response;
   }
 };

@@ -9,14 +9,15 @@ export default async (event, context) => {
   const s3 = new aws.S3({ region: S3_REGION }); // inside the handler to mock in tests
 
   if (!event.queryStringParameters?.name) {
+    const message = 'No required query parameters';
     const response = {
       headers: commonHeaders,
       statusCode: 400,
       body: JSON.stringify({
-        error: { message: 'No required query parameters' }
+        error: { message }
       }),
     };
-    logError(event, context);
+    logError(event, context, message);
     return response;
   }
 
@@ -40,14 +41,15 @@ export default async (event, context) => {
     logSuccess(event, context);
     return response;
   } catch(error) {
+    const message = 'Server error';
     const response = {
       headers: commonHeaders,
       statusCode: 500,
       body: JSON.stringify({
-        error: { message: 'Server error' }
+        error: { message }
       }),
     };
-    logError(event, context);
+    logError(event, context, message);
     return response;
   }
 };
