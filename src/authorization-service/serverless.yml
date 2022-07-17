@@ -1,0 +1,42 @@
+service: authorization-service
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: eu-west-1
+
+functions:
+  basicAuthorizer:
+    handler: handlers/basicAuthorizer.default
+    events:
+      - http:
+          path: /token
+          method: get
+
+custom:
+  webpack:
+    webpackConfig: webpack.config.cjs
+    includeModules: true
+
+plugins:
+  - serverless-webpack
+  - serverless-dotenv-plugin
+
+
+
+#resources:
+#  Resources:
+#    tokenAuthorizer:
+#      Type: AWS::Lambda::Function
+#      Properties:
+#        FunctionName: abc
+#        Handler: adfsd
+#        Role: {}
+#        Runtime: node14x
+#    tokenAuthorizer2:
+#      Type: AWS::ApiGateway::Authorizer
+#      Properties:
+#        RestApiId: some-rest-api-id

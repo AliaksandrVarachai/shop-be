@@ -49,6 +49,11 @@ functions:
             parameters:
               querystrings:
                 name: true
+          authorizer:
+            arn: env:TOKEN_AUTHORIZER_ARN
+            resultTtlInSeconds: 0
+            identitySource: method.request.header.Authorization
+            type: token
   importFileParser:
     handler: handlers/importFileParser.default
     events:

@@ -7,8 +7,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "deploy:dev": "cross-env NODE_ENV=development serverless deploy --aws-profile epam-admin2",
-    "deploy": "cross-env NODE_ENV=production serverless deploy --aws-profile epam-admin2",
+    "deploy:dev": "cross-env NODE_ENV=\"development\" serverless deploy --aws-profile epam-admin2",
+    "deploy": "cross-env NODE_ENV=\"production\" serverless deploy --aws-profile epam-admin2",
     "test": "jest --config jest.config.js"
   },
   "repository": {
