@@ -50,7 +50,7 @@ functions:
               querystrings:
                 name: true
           authorizer:
-            arn: env:TOKEN_AUTHORIZER_ARN
+            arn: ${env:TOKEN_AUTHORIZER_ARN}
             resultTtlInSeconds: 0
             identitySource: method.request.header.Authorization
             type: token
