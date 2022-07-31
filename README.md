@@ -99,3 +99,32 @@ See Swagger docs: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-ser
 ### Additional tasks
 1. `catalogBatchProcess` lambda is covered by unit tests
 2. SNS Filter Policy for `createProductTopic` is configured
+
+## Task 7
+
+- Link to the integrated frontend repository: https://github.com/AliaksandrVarachai/shop-react-redux-cloudfront/pull/4
+- Link to a hosted web-site: https://d1fxaqepkkpfnn.cloudfront.net
+
+### Task 7.1
+
+- Created and configured `authorization-service`
+- Implemented `basicAuthorizer` lambda
+- Initialized environment variable`AliaksandrVarachai=TEST_PASSWORD` in `.env` file to pass the authorization
+
+### Task 7.2
+
+- Added authorization to `/import` path of the API Gateway
+- Configured `basicAuthorizer` lambda as an authorizer
+
+### Task 7.3
+
+- Implemented a basic authorization via the HTTP header `Authorization: Basic {authorization_token}`
+- Read `authorization_token` from browser local storage
+
+### Task 7.4
+
+- Created PRs both for backend implementation and frontend integration
+
+### Additional tasks
+
+1. Client application displays alerts for the responses that have `401` and `403` statuses

@@ -44,11 +44,20 @@ functions:
       - http:
           path: /import
           method: get
-          cors: true
           request:
             parameters:
               querystrings:
                 name: true
+          authorizer:
+            arn: ${env:TOKEN_AUTHORIZER_ARN}
+            resultTtlInSeconds: 0
+            identitySource: method.request.header.Authorization
+            type: token
+          cors:
+            origins:
+              - ${env:WEB_SITE_ORIGIN}
+            methods:
+              - GET
   importFileParser:
     handler: handlers/importFileParser.default
     events:
@@ -65,3 +74,14 @@ resources:
       Type: AWS::SQS::Queue
       Properties:
         QueueName: catalogItemsQueue
+
+    GatewayResponseDefault4XX:
+      Type: 'AWS::ApiGateway::GatewayResponse'
+      Properties:
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: "'${env:WEB_SITE_ORIGIN}'"
+          gatewayresponse.header.Access-Control-Allow-Credentials: "'true'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
+        ResponseType: DEFAULT_4XX
+        RestApiId:
+          Ref: 'ApiGatewayRestApi'
