@@ -128,3 +128,15 @@ See Swagger docs: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-ser
 ### Additional tasks
 
 1. Client application displays alerts for the responses that have `401` and `403` statuses
+
+## Task 9
+
+<!-- TODO: update -->
+- Link to the integrated frontend repository:
+- Link to a hosted web-site: https://d1fxaqepkkpfnn.cloudfront.net
+
+### Task 9.1
+
+### Task 9.2
+
+### Task 9.3

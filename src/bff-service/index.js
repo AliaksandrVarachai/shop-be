@@ -19,7 +19,14 @@ const recipientUrlMiddleware = (req, res, next) => {
   const recipientServiceName = recipientServiceNames[recipient];
   if (!recipientServiceName) {
     const stringOfAvailableServiceNames = `'${Object.keys(recipientServiceNames).join("', '")}'`;
-    return res.status(502).json({ error: `Wrong service name is provided. Available service names: ${stringOfAvailableServiceNames}` });
+
+    return res.status(502).json({
+      error: `Wrong service name is provided. Available service names: ${stringOfAvailableServiceNames}`,
+      details: {
+        originalUrl: req.req.originalUrl,
+        recipientServiceName,
+      }
+    });
   }
   if (!process.env[recipientServiceName]) {
     return res.status(500).json({ error: `Environment variable "${recipientServiceName}" must contain a service URL` });
