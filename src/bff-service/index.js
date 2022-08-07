@@ -23,7 +23,7 @@ const recipientUrlMiddleware = (req, res, next) => {
     return res.status(502).json({
       error: `Wrong service name is provided. Available service names: ${stringOfAvailableServiceNames}`,
       details: {
-        originalUrl: req.req.originalUrl,
+        originalUrl: req.originalUrl,
         recipientServiceName,
       }
     });
