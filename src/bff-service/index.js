@@ -20,7 +20,7 @@ const recipientUrlMiddleware = (req, res, next) => {
   if (!recipientServiceName) {
     const listOfAvailableServiceNames = `'${Object.keys(recipientServiceNames).join("', '")}'`;
     return res.status(502).json({
-      error: `Wrong service name "${recipient}" is provided. Available service names: ${listOfAvailableServiceNames}`,
+      error: `Wrong service name '${recipient}' is provided. Available service names: ${listOfAvailableServiceNames}`,
     });
   }
   if (!process.env[recipientServiceName]) {
