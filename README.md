@@ -132,11 +132,29 @@ See Swagger docs: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-ser
 ## Task 9
 
 <!-- TODO: update -->
-- Link to the integrated frontend repository:
+- Link to the integrated frontend repository: https://github.com/AliaksandrVarachai/shop-react-redux-cloudfront/pull/6
 - Link to a hosted web-site: https://d1fxaqepkkpfnn.cloudfront.net
 
 ### Task 9.1
+1. Created `bff-service`
+2. Created an `Express` where service URLs are stored in `.env` file as environment variables
+3. Handled error scenarios:
+   - if BFF sees an incorrect service name, it returns `502` error
+   - if BFF cannot get service URL from environment variables, it returns `500` error
+   - if destination service responses with an error statusCode, it returns the provided error status code
 
 ### Task 9.2
+1. Deployed BFF Service with Elastic Beanstalk:
+   - `product` service direct route: http://varachai-bff-api-dev.eu-west-1.elasticbeanstalk.com/product
+   - `cart` service direct route: http://varachai-bff-api-dev.eu-west-1.elasticbeanstalk.com/cart
+2. Checked that all product and cart service methods work:
+   - get a `product` by ID: http://varachai-bff-api-dev.eu-west-1.elasticbeanstalk.com/product/c10944ac-acba-4db4-af4a-5c7240a94518
+3. Created a **Proxy API Gateway** (necessary for FE integration):
+   - base proxy route: https://7c125j3nkd.execute-api.eu-west-1.amazonaws.com
+   - `product` service proxy routes:
+     - https://7c125j3nkd.execute-api.eu-west-1.amazonaws.com/product
+     - https://7c125j3nkd.execute-api.eu-west-1.amazonaws.com/product/c10944ac-acba-4db4-af4a-5c7240a94518
+   - `cart` service proxy route: https://7c125j3nkd.execute-api.eu-west-1.amazonaws.com/cart
 
 ### Task 9.3
+- Created PRs both for backend implementation and frontend integration
