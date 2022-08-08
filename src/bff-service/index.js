@@ -18,14 +18,9 @@ const recipientUrlMiddleware = (req, res, next) => {
   const [, recipient, ...afterRecipientPathnames] = originalUrl.pathname.split('/');
   const recipientServiceName = recipientServiceNames[recipient];
   if (!recipientServiceName) {
-    const stringOfAvailableServiceNames = `'${Object.keys(recipientServiceNames).join("', '")}'`;
-
+    const listOfAvailableServiceNames = `'${Object.keys(recipientServiceNames).join("', '")}'`;
     return res.status(502).json({
-      error: `Wrong service name is provided. Available service names: ${stringOfAvailableServiceNames}`,
-      details: {
-        originalUrl: req.originalUrl,
-        recipientServiceName,
-      }
+      error: `Wrong service name "${recipient}" is provided. Available service names: ${listOfAvailableServiceNames}`,
     });
   }
   if (!process.env[recipientServiceName]) {
