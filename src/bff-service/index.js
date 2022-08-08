@@ -38,10 +38,14 @@ app.use(recipientUrlMiddleware);
 
 app.all('/*', async (req, res) => {
   const isBody = Object.keys(req.body || {}).length > 0;
+  const authorizationHeader = req.get('authorization');
   const axiosRequest = {
     method: req.method,
     url: req.recipientUrl,
-    ...(isBody && req.body)
+    ...(isBody && { data: req.body }),
+    headers: {
+      ...(authorizationHeader && { Authorization: authorizationHeader })
+    }
   };
   try {
     const axiosResponse = await axios(axiosRequest);

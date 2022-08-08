@@ -56,6 +56,19 @@ functions:
           path: /products
           method: post
           cors: true
+      - http:
+          path: /products
+          method: put
+          authorizer:
+            arn: ${env:TOKEN_AUTHORIZER_ARN}
+            resultTtlInSeconds: 0
+            identitySource: method.request.header.Authorization
+            type: token
+          cors:
+            origins:
+              - ${env:WEB_SITE_ORIGIN}
+            methods:
+              - PUT
   catalogBatchProcess:
     handler: handlers/catalogBatchProcess.default
     events:
