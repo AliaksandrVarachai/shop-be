@@ -130,8 +130,6 @@ See Swagger docs: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-ser
 1. Client application displays alerts for the responses that have `401` and `403` statuses
 
 ## Task 9
-
-<!-- TODO: update -->
 - Link to the integrated frontend repository: https://github.com/AliaksandrVarachai/shop-react-redux-cloudfront/pull/6
 - Link to a hosted web-site: https://d1fxaqepkkpfnn.cloudfront.net
 
