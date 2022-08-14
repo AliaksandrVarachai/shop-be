@@ -20,11 +20,7 @@ export class BffService {
     };
     try {
       const axiosResponse = await this.httpService.axiosRef(axiosRequest);
-      res.status(axiosResponse.status)
-      const { error, data } = axiosResponse.data;
-      if (error) return res.json(error);
-      if (data) return res.json(data);
-      return res.json(axiosResponse.data);
+      return res.status(axiosResponse.status).json(axiosResponse.data);
     } catch (error) {
       if (error.response) {
         const { status, data } = error.response;
