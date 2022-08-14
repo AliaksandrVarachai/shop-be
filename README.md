@@ -156,3 +156,7 @@ See Swagger docs: https://app.swaggerhub.com/apis/AliaksandrVarachai/product-ser
 
 ### Task 9.3
 - Created PRs both for backend implementation and frontend integration
+
+### Additional Tasks
+1. Added a cache for a request to `getProductsList` lambda of the Product Service. The cache expires in 2 minutes
+2. BFF Service is rewritten using `NestJS`
